@@ -18,7 +18,7 @@ interface SiteConfig {
 export const SITE_CANONICAL = "https://turboeth.xyz"
 
 export const siteConfig: SiteConfig = {
-  name: "💬 Chatter",
+  name: "Chatter",
   title: "Chatter - XMTP app template",
   emoji: "💬",
   description: "Bootstrap your XMTP app with Chatter",
