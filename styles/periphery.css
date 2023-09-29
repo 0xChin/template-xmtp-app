@@ -1,0 +1,90 @@
+.btn {
+  @apply inline-block cursor-pointer rounded-md py-3 px-4 text-center font-semibold duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-75;
+}
+
+.btn-xs {
+  @apply text-xs;
+}
+.btn-sm {
+  @apply text-sm;
+}
+.btn-lg {
+  @apply px-5 py-4 text-lg;
+}
+.btn-pill {
+  @apply rounded-full;
+}
+.btn-curve {
+  @apply rounded-lg;
+}
+.btn-xl {
+  @apply px-5 py-4 text-xl;
+}
+
+.btn-2xl {
+  @apply px-6 py-4 text-2xl;
+}
+
+.btn-primary {
+  @apply bg-neutral-700 text-white hover:bg-neutral-600 focus:ring-gray-400 dark:bg-neutral-600 hover:dark:bg-neutral-700;
+}
+
+.btn-white {
+  @apply bg-white text-gray-600 hover:bg-gray-50 focus:ring-gray-400;
+}
+
+.btn-light {
+  @apply bg-neutral-50 text-neutral-700 hover:bg-neutral-100 focus:ring-neutral-300;
+}
+
+.btn-dark {
+  @apply bg-neutral-600 text-white hover:bg-neutral-700 focus:ring-neutral-400;
+}
+
+.btn-green {
+  @apply bg-green-600 text-white hover:bg-green-700 focus:ring-green-400;
+}
+
+.btn-emerald {
+  @apply bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-emerald-400;
+}
+
+.btn-blue {
+  @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-400;
+}
+
+.btn-red {
+  @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-400;
+}
+
+.tag {
+  @apply inline-flex rounded-lg text-xs font-semibold leading-5;
+  padding-left: 0.65rem;
+  padding-right: 0.65rem;
+  padding-bottom: 0.125rem;
+  padding-top: 0.125rem;
+}
+
+.tag-base {
+  @apply text-base;
+}
+
+.tag-primary {
+  @apply bg-gray-300 text-gray-600 dark:bg-gray-700 dark:text-gray-200;
+}
+
+.tag-white {
+  @apply bg-white text-gray-700;
+}
+.tag-light {
+  @apply bg-gray-100 text-gray-600;
+}
+.tag-dark {
+  @apply bg-gray-800 text-gray-100;
+}
+.tag-gray {
+  @apply bg-gray-700 text-gray-100;
+}
+.tag-emerald {
+  @apply bg-emerald-800 text-emerald-100;
+}
