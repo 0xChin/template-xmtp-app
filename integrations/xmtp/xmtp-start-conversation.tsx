@@ -49,7 +49,11 @@ export const XMTPStartConversation = ({ className }: XMTPStartConversation) => {
   const handleStartConversation = async () => {
     if (peerAddress.trim() !== "") {
       if (!canMessage(peerAddress)) return
-      startConversation(peerAddress, message)
+      if (peerAddress.endsWith(".eth")) {
+        startConversation(ensResolvedAddress, message)
+      } else {
+        startConversation(peerAddress, message)
+      }
       setPeerAddress("")
       setMessage("")
     }
@@ -103,19 +107,19 @@ export const XMTPStartConversation = ({ className }: XMTPStartConversation) => {
     <div className={classes}>
       <div className="mb-4">
         <input
-          className="w-full input mb-1"
+          className="input mb-1 w-full"
           type="text"
           placeholder="Enter an address or ENS..."
           value={peerAddress}
           onChange={handleAccountChange}
         />
-        <p className="text-red-500 text-xs italic text-left">
+        <p className="text-left text-xs italic text-red-500">
           {getFeedbackMessage()}
         </p>
       </div>
       <div className={"flex items-center gap-x-4"}>
         <input
-          className="w-full input"
+          className="input w-full"
           type="text"
           placeholder="Type your message..."
           value={message}
