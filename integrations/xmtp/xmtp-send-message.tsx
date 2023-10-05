@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { FormEvent, useState } from "react"
 import { useSendMessage } from "@xmtp/react-sdk"
 
 import { cn } from "@/lib/utils"
@@ -19,16 +19,17 @@ export const XMTPSendMessage = ({
     setMessage(event.target.value)
   }
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async (e: FormEvent) => {
+    e.preventDefault()
     if (message.trim() !== "") {
-      sendMessage(conversation, message)
+      await sendMessage(conversation, message)
       setMessage("")
     }
   }
 
   const classes = cn("flex items-center gap-x-4", className)
   return (
-    <div className={classes}>
+    <form className={classes} onSubmit={handleSendMessage}>
       <input
         className="input w-full"
         type="text"
@@ -36,7 +37,7 @@ export const XMTPSendMessage = ({
         value={message}
         onChange={handleMessageChange}
       />
-      <Button onClick={handleSendMessage}>Send</Button>
-    </div>
+      <Button type="submit">Send</Button>
+    </form>
   )
 }

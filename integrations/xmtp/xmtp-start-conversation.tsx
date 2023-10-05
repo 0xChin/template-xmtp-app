@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
 import {
   isValidAddress,
   useCanMessage,
@@ -31,7 +31,6 @@ export const XMTPStartConversation = ({ className }: XMTPStartConversation) => {
     useEnsAddress(peerAddress)
 
   const handleAccountChange = async (event: any) => {
-    const newPeerAddress: string = event.target.value
     setPeerAddress(event.target.value)
     if (isValidAddress(event.target.value)) {
       await checkAddress(event.target.value)
@@ -42,7 +41,8 @@ export const XMTPStartConversation = ({ className }: XMTPStartConversation) => {
     setMessage(event.target.value)
   }
 
-  const handleStartConversation = async () => {
+  const handleStartConversation = async (e: FormEvent) => {
+    e.preventDefault()
     if (peerAddress.trim() !== "") {
       if (
         peerAddress.endsWith(".eth") &&
@@ -125,7 +125,10 @@ export const XMTPStartConversation = ({ className }: XMTPStartConversation) => {
           {getFeedbackMessage()}
         </p>
       </div>
-      <div className={"flex items-center gap-x-4"}>
+      <form
+        className={"flex items-center gap-x-4"}
+        onSubmit={handleStartConversation}
+      >
         <input
           className="input w-full"
           type="text"
@@ -133,10 +136,10 @@ export const XMTPStartConversation = ({ className }: XMTPStartConversation) => {
           value={message}
           onChange={handleMessageChange}
         />
-        <Button disabled={!canSendMessage} onClick={handleStartConversation}>
+        <Button disabled={!canSendMessage} type="submit">
           Send
         </Button>
-      </div>
+      </form>
     </div>
   )
 }
