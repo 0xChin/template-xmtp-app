@@ -59,7 +59,7 @@ export const XMTPConversation = ({
         <SheetContent>
           <div
             className="flex flex-1 flex-col gap-y-4"
-            style={{ height: "95%" }}
+            style={{ height: "95%", overflow: "auto" }}
           >
             {!isLoading &&
               messages?.map((message) => (
