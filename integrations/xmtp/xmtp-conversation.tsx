@@ -3,6 +3,7 @@ import { useMessages, useSendMessage, useStreamMessages } from "@xmtp/react-sdk"
 import { cn } from "@/lib/utils"
 import { Card } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { AvatarBlockie } from "@/components/avatar-blockie"
 import { Address } from "@/components/blockchain/address"
 import { TimeFromDate } from "@/components/shared/time-from-date"
@@ -36,8 +37,8 @@ export const XMTPConversation = ({
   const classesCard = cn(classNameCard, "flex flex-col p-4 text-left")
   return (
     <div>
-      <Dialog>
-        <DialogTrigger className={classNameTrigger}>
+      <Sheet>
+        <SheetTrigger className={classNameTrigger}>
           <Card className={classesCard}>
             <div className="flex items-center gap-x-6">
               <AvatarBlockie
@@ -52,19 +53,22 @@ export const XMTPConversation = ({
               <TimeFromDate date={conversation.updatedAt} type="DATETIME" />
             </span>
           </Card>
-        </DialogTrigger>
-        <DialogContent className="fix inset-y-0 right-0 flex-col rounded-none pt-12">
-          <div className="flex h-full flex-1 flex-col gap-y-4">
+        </SheetTrigger>
+        <SheetContent>
+          <div
+            className="flex flex-1 flex-col gap-y-4"
+            style={{ height: "95%" }}
+          >
             {!isLoading &&
               messages?.map((message) => (
                 <XMTPMessage key={message.id} message={message} />
               ))}
           </div>
-          <div className="self-end">
+          <div>
             <XMTPSendMessage className="w-full" conversation={conversation} />
           </div>
-        </DialogContent>
-      </Dialog>
+        </SheetContent>
+      </Sheet>
     </div>
   )
 }

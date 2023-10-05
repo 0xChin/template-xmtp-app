@@ -31,14 +31,22 @@ export const XMTPStartConversation = ({ className }: XMTPStartConversation) => {
     data: ensResolvedAddress,
     isLoading: isEnsLoading,
     isFetching: isEnsFetching,
+    refetch: ensRefetch,
   } = useEnsAddress({
     name: peerAddress,
+    chainId: 1,
+    enabled: false,
   })
 
   const handleAccountChange = async (event: any) => {
+    const newPeerAddress: string = event.target.value
     setPeerAddress(event.target.value)
     if (isValidAddress(event.target.value)) {
-      checkAddress(event.target.value)
+      await checkAddress(event.target.value)
+    }
+    if (newPeerAddress.endsWith(".eth")) {
+      console.log("refetching")
+      await ensRefetch()
     }
   }
 
@@ -48,11 +56,15 @@ export const XMTPStartConversation = ({ className }: XMTPStartConversation) => {
 
   const handleStartConversation = async () => {
     if (peerAddress.trim() !== "") {
-      if (!canMessage(peerAddress)) return
-      if (peerAddress.endsWith(".eth")) {
-        startConversation(ensResolvedAddress, message)
+      if (
+        peerAddress.endsWith(".eth") &&
+        typeof ensResolvedAddress === "string"
+      ) {
+        if (!canMessage(ensResolvedAddress)) return
+        await startConversation(ensResolvedAddress, message)
       } else {
-        startConversation(peerAddress, message)
+        if (!canMessage(peerAddress)) return
+        await startConversation(peerAddress, message)
       }
       setPeerAddress("")
       setMessage("")
@@ -68,8 +80,13 @@ export const XMTPStartConversation = ({ className }: XMTPStartConversation) => {
   }, [peerIsActive, message])
 
   useEffect(() => {
-    if (ensResolvedAddress && isValidAddress(ensResolvedAddress))
-      checkAddress(ensResolvedAddress)
+    const checkEnsAddress = async (ensResolvedAddress: string) => {
+      await checkAddress(ensResolvedAddress)
+    }
+
+    if (ensResolvedAddress && isValidAddress(ensResolvedAddress)) {
+      checkEnsAddress(ensResolvedAddress).catch((err) => console.log(err))
+    }
   }, [ensResolvedAddress])
 
   const getFeedbackMessage = () => {
@@ -125,12 +142,7 @@ export const XMTPStartConversation = ({ className }: XMTPStartConversation) => {
           value={message}
           onChange={handleMessageChange}
         />
-        <Button
-          rounded={"lg"}
-          disabled={!canSendMessage}
-          variant={canSendMessage ? "dark" : "disabled"}
-          onClick={handleStartConversation}
-        >
+        <Button disabled={!canSendMessage} onClick={handleStartConversation}>
           Send
         </Button>
       </div>
