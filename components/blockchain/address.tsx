@@ -5,12 +5,14 @@ import { LinkComponent } from "../shared/link-component"
 
 interface AddressProps extends Omit<HTMLAttributes<HTMLElement>, "children"> {
   address: AddressType
+  ens?: string
   truncate?: boolean
   isLink?: boolean
 }
 
 export const Address = ({
   address,
+  ens,
   className,
   truncate,
   isLink,
@@ -30,7 +32,7 @@ export const Address = ({
         href={`${blockExplorerUrl}/address/${address}`}
         {...props}
       >
-        {formattedAddress}
+        {ens ?? formattedAddress}
       </LinkComponent>
     )
   }

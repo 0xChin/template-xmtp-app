@@ -1,5 +1,6 @@
 import { useMessages, useSendMessage, useStreamMessages } from "@xmtp/react-sdk"
 
+import useEnsName from "@/lib/hooks/use-ens-name"
 import { cn } from "@/lib/utils"
 import { Card } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
@@ -35,6 +36,7 @@ export const XMTPConversation = ({
 }: any) => {
   const { messages, isLoading } = useMessages(conversation)
   const classesCard = cn(classNameCard, "flex flex-col p-4 text-left")
+  const { data } = useEnsName(conversation.peerAddress as `0x${string}`)
   return (
     <div>
       <Sheet>
@@ -46,7 +48,7 @@ export const XMTPConversation = ({
                 styled
                 address={conversation.peerAddress}
               />
-              <Address address={conversation.peerAddress} />
+              <Address address={data ?? conversation.peerAddress} />
             </div>
             <span className="mt-4 text-xs">
               Last Update:{" "}
