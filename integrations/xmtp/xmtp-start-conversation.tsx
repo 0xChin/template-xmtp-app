@@ -4,8 +4,8 @@ import {
   useCanMessage,
   useStartConversation,
 } from "@xmtp/react-sdk"
-import { useEnsAddress } from "wagmi"
 
+import useEnsAddress from "@/lib/hooks/use-ens-address"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
@@ -27,26 +27,14 @@ export const XMTPStartConversation = ({ className }: XMTPStartConversation) => {
     setIsLoading(false)
   }
 
-  const {
-    data: ensResolvedAddress,
-    isLoading: isEnsLoading,
-    isFetching: isEnsFetching,
-    refetch: ensRefetch,
-  } = useEnsAddress({
-    name: peerAddress,
-    chainId: 1,
-    enabled: false,
-  })
+  const { data: ensResolvedAddress, isLoading: isEnsLoading } =
+    useEnsAddress(peerAddress)
 
   const handleAccountChange = async (event: any) => {
     const newPeerAddress: string = event.target.value
     setPeerAddress(event.target.value)
     if (isValidAddress(event.target.value)) {
       await checkAddress(event.target.value)
-    }
-    if (newPeerAddress.endsWith(".eth")) {
-      console.log("refetching")
-      await ensRefetch()
     }
   }
 
@@ -84,16 +72,16 @@ export const XMTPStartConversation = ({ className }: XMTPStartConversation) => {
       await checkAddress(ensResolvedAddress)
     }
 
-    if (ensResolvedAddress && isValidAddress(ensResolvedAddress)) {
+    if (
+      typeof ensResolvedAddress === "string" &&
+      isValidAddress(ensResolvedAddress)
+    ) {
       checkEnsAddress(ensResolvedAddress).catch((err) => console.log(err))
     }
   }, [ensResolvedAddress])
 
   const getFeedbackMessage = () => {
-    if (
-      isLoading ||
-      (peerAddress.endsWith(".eth") && (isEnsLoading || isEnsFetching))
-    ) {
+    if (isLoading || (peerAddress.endsWith(".eth") && isEnsLoading)) {
       return "Finding address on the XMTP network"
     }
 
@@ -105,10 +93,13 @@ export const XMTPStartConversation = ({ className }: XMTPStartConversation) => {
       return "Please enter a valid 0x wallet, or ENS address"
     }
 
+    if (!ensResolvedAddress && peerAddress.endsWith(".eth")) {
+      return "An error occured resolving the address from the ENS"
+    }
+
     if (
       !isLoading &&
       !isEnsLoading &&
-      !isEnsFetching &&
       !peerIsActive &&
       (isValidAddress(peerAddress) || peerAddress.endsWith(".eth"))
     ) {

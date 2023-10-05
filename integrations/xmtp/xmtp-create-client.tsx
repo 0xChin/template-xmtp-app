@@ -1,6 +1,5 @@
 import { useCallback, useEffect } from "react"
 import { usePrivy, useWallets } from "@privy-io/react-auth"
-import { usePrivyWagmi } from "@privy-io/wagmi-connector"
 import { useClient } from "@xmtp/react-sdk"
 import { useAccount, useNetwork } from "wagmi"
 

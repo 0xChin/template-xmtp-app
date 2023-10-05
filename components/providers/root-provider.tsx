@@ -20,9 +20,7 @@ export default function RootProvider({ children }: RootProviderProps) {
     <XMTPProvider dbVersion={2}>
       <ThemeProvider>
         <QueryClientProvider client={queryClient}>
-          <Privy>
-            <HandleWalletEvents>{children}</HandleWalletEvents>
-          </Privy>
+          <Privy>{children}</Privy>
         </QueryClientProvider>
       </ThemeProvider>
     </XMTPProvider>
