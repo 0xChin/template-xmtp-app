@@ -1,7 +1,11 @@
 "use client"
 
 import * as React from "react"
-import { useClient, useConversations } from "@xmtp/react-sdk"
+import {
+  useClient,
+  useConversations,
+  useStreamAllMessages,
+} from "@xmtp/react-sdk"
 
 import { cn } from "@/lib/utils"
 
@@ -16,6 +20,10 @@ export const XMTPChat = ({ className }: XMTPChat) => {
   const { client } = useClient()
 
   const { conversations } = useConversations()
+  useStreamAllMessages(
+    () => {},
+    () => {}
+  )
 
   if (!client)
     return (

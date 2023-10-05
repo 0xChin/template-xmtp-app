@@ -76,7 +76,7 @@ export const XMTPStartConversation = ({ className }: XMTPStartConversation) => {
       typeof ensResolvedAddress === "string" &&
       isValidAddress(ensResolvedAddress)
     ) {
-      checkEnsAddress(ensResolvedAddress).catch((err) => console.log(err))
+      void checkEnsAddress(ensResolvedAddress)
     }
   }, [ensResolvedAddress])
 

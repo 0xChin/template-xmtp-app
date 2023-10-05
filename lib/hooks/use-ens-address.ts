@@ -22,7 +22,7 @@ export default function useEnsAddress(name: string) {
     }
 
     if (name.endsWith(".eth")) {
-      updateAddress().catch((err) => console.log(err))
+      void updateAddress()
     }
   }, [name])
 
