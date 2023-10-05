@@ -17,7 +17,7 @@ export const XMTPCreateClient = () => {
 
   const handleConnect = useCallback(async () => {
     if (!walletClient) return
-    await initialize({ signer: walletClient })
+    await initialize({ signer: walletClient, options: { env: "production" } })
   }, [walletClient, initialize])
 
   if (error) {
