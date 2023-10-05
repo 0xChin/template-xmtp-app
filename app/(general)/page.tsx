@@ -1,18 +1,3 @@
-import Image from "next/image"
-import Link from "next/link"
-import { FaDiscord, FaGithub } from "react-icons/fa"
-import { LuBook } from "react-icons/lu"
-
-import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
-import {
-  PageHeader,
-  PageHeaderCTA,
-  PageHeaderDescription,
-  PageHeaderHeading,
-} from "@/components/layout/page-header"
-import { CopyButton } from "@/components/shared/copy-button"
 import { XMTPChat } from "@/integrations/xmtp/xmtp-chat"
 
 export default function HomePage() {

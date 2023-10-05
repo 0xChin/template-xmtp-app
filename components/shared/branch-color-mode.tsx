@@ -3,5 +3,6 @@ import { useColorMode } from "@/lib/state/color-mode"
 export function BranchColorMode({ children }: any) {
   const [colorMode] = useColorMode()
 
+  // eslint-disable-next-line
   return colorMode === "light" ? children[0] : children[1]
 }

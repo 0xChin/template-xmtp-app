@@ -18,11 +18,17 @@ export const WalletBalance = ({
     address,
   })
 
+  // eslint-disable-next-line
+  const trimmedFormattedBalance = trimFormattedBalance(
+    balance?.formatted,
+    decimals
+  )
+
   if (!address || !balance) return null
 
   return (
     <span className={className} {...props}>
-      {trimFormattedBalance(balance.formatted, decimals)}
+      {trimmedFormattedBalance}
     </span>
   )
 }
