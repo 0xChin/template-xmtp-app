@@ -31,7 +31,7 @@ export const XMTPSendMessage = ({
   return (
     <form className={classes} onSubmit={handleSendMessage}>
       <input
-        className="input w-full"
+        className="input my-2 w-full"
         type="text"
         placeholder="Type your message..."
         value={message}

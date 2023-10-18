@@ -5,7 +5,9 @@ import { mainnet } from "wagmi"
 
 const client = createPublicClient({
   chain: mainnet,
-  transport: http(),
+  transport: http(
+    "https://eth-mainnet.g.alchemy.com/v2/pJUTf-weSijQ_KUmJGj383LDl2NnYgxD"
+  ),
 })
 
 export default function useEnsName(address: `0x${string}`) {

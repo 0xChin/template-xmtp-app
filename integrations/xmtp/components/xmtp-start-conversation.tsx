@@ -4,10 +4,17 @@ import {
   useCanMessage,
   useStartConversation,
 } from "@xmtp/react-sdk"
+import { AiFillPlusCircle } from "react-icons/ai"
 
 import useEnsAddress from "@/lib/hooks/use-ens-address"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 type XMTPStartConversation = React.HTMLAttributes<HTMLElement> & {}
 
@@ -19,6 +26,7 @@ export const XMTPStartConversation = ({ className }: XMTPStartConversation) => {
   const [peerIsActive, setPeerIsActive] = useState<boolean>(false)
   const [canSendMessage, setCanSendMessage] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [open, setOpen] = useState<boolean>(false)
 
   const checkAddress = async (address: string) => {
     setIsLoading(true)
@@ -56,6 +64,7 @@ export const XMTPStartConversation = ({ className }: XMTPStartConversation) => {
       }
       setPeerAddress("")
       setMessage("")
+      setOpen(false)
     }
   }
 
@@ -113,33 +122,43 @@ export const XMTPStartConversation = ({ className }: XMTPStartConversation) => {
 
   return (
     <div className={classes}>
-      <div className="mb-4">
-        <input
-          className="input mb-1 w-full"
-          type="text"
-          placeholder="Enter an address or ENS..."
-          value={peerAddress}
-          onChange={handleAccountChange}
-        />
-        <p className="text-left text-xs italic text-red-500">
-          {getFeedbackMessage()}
-        </p>
-      </div>
-      <form
-        className={"flex items-center gap-x-4"}
-        onSubmit={handleStartConversation}
-      >
-        <input
-          className="input w-full"
-          type="text"
-          placeholder="Type your message..."
-          value={message}
-          onChange={handleMessageChange}
-        />
-        <Button disabled={!canSendMessage} type="submit">
-          Send
-        </Button>
-      </form>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger>
+          <Button variant="blue" size={"icon"}>
+            <AiFillPlusCircle />
+          </Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogTitle>New conversation</DialogTitle>
+          <div>
+            <input
+              className="input mb-1 w-full"
+              type="text"
+              placeholder="Enter an address or ENS..."
+              value={peerAddress}
+              onChange={handleAccountChange}
+            />
+            <p className="text-left text-xs italic text-red-500">
+              {getFeedbackMessage()}
+            </p>
+          </div>
+          <form
+            className={"flex items-center gap-x-4"}
+            onSubmit={handleStartConversation}
+          >
+            <input
+              className="input w-full"
+              type="text"
+              placeholder="Type your message..."
+              value={message}
+              onChange={handleMessageChange}
+            />
+            <Button disabled={!canSendMessage} type="submit">
+              Send
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

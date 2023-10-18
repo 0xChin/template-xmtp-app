@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react"
-import { SetStateAction } from "jotai"
+import { SetStateAction, useEffect, useState } from "react"
 import { createPublicClient, http } from "viem"
 import { mainnet } from "wagmi"
 
 const client = createPublicClient({
   chain: mainnet,
-  transport: http(),
+  transport: http(
+    "https://eth-mainnet.g.alchemy.com/v2/pJUTf-weSijQ_KUmJGj383LDl2NnYgxD"
+  ),
 })
 
 export default function useEnsAddress(name: string) {

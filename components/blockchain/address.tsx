@@ -4,8 +4,8 @@ import { useNetwork, type Address as AddressType } from "wagmi"
 import { LinkComponent } from "../shared/link-component"
 
 interface AddressProps extends Omit<HTMLAttributes<HTMLElement>, "children"> {
-  address: AddressType
-  ens?: string
+  address: string
+  ens?: string | null
   truncate?: boolean
   isLink?: boolean
 }
@@ -32,14 +32,14 @@ export const Address = ({
         href={`${blockExplorerUrl}/address/${address}`}
         {...props}
       >
-        {ens ?? formattedAddress}
+        {formattedAddress}
       </LinkComponent>
     )
   }
 
   return (
     <span className={className} {...props}>
-      {formattedAddress}
+      {ens ?? formattedAddress}
     </span>
   )
 }

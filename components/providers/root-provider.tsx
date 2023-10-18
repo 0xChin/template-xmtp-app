@@ -6,7 +6,6 @@ import { XMTPProvider } from "@xmtp/react-sdk"
 import { ThemeProvider } from "next-themes"
 
 import { useIsMounted } from "@/lib/hooks/use-is-mounted"
-import HandleWalletEvents from "@/components/blockchain/handle-wallet-events"
 import { Privy } from "@/components/providers/privy"
 
 const queryClient = new QueryClient()
