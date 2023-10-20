@@ -142,6 +142,12 @@ export function MobileNav() {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
+            <Link href="/" className="font-medium">
+              Home
+            </Link>
+            <Link href="/contacts" className="font-medium">
+              Contacts
+            </Link>
             <Link
               href="https://docs.turboeth.xyz/overview"
               className="font-medium"

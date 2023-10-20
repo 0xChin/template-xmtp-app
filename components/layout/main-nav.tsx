@@ -42,6 +42,16 @@ function MainNavMenu() {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
+          <LinkComponent href="/">
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <span>Home</span>
+            </NavigationMenuLink>
+          </LinkComponent>
+          <LinkComponent href="/contacts">
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <span>Contacts</span>
+            </NavigationMenuLink>
+          </LinkComponent>
           <LinkComponent href="https://docs.turboeth.xyz/overview">
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               <span>Documentation</span>

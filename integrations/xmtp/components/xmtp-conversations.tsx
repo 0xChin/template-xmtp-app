@@ -1,10 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { c } from "@wagmi/cli/dist/config-c09a23a5"
+import Link from "next/link"
 import { useConversations } from "@xmtp/react-sdk"
+import { IoMdContact } from "react-icons/io"
 
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 import { useConversationsAddresses } from "../hooks/use-conversations-addresses"
 import { XMTPConversationItem } from "./xmtp-conversation-item"
@@ -38,18 +40,20 @@ export const XMTPConversations = ({
 
   return (
     <div className={classes} style={{ overflow: "auto" }}>
-      <div
-        className="my-4 flex items-center justify-between"
-        style={{ width: "95%" }}
-      >
+      <div className="my-4 flex w-[95%] items-center justify-between gap-x-3">
         <input
-          className="input mr-2"
+          className="input w-[70%]"
           type="text"
           placeholder="Search conversation..."
           value={search}
           onChange={handleSearchChange}
         />
         <XMTPStartConversation />
+        <Link href="/contacts">
+          <Button variant={"emerald"} size={"icon"}>
+            <IoMdContact />
+          </Button>
+        </Link>
       </div>
       {conversations.map((conversation, index) => (
         <div

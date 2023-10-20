@@ -20,7 +20,7 @@ export const XMTPConversation = ({
 
   return (
     <div className="flex h-full flex-col overflow-hidden">
-      <div className="sticky top-0 z-10 flex items-center border-b border-gray-200 bg-white p-2 shadow">
+      <div className="sticky top-0 z-10 flex items-center border-b border-gray-200 bg-slate-200 p-2 shadow">
         <button onClick={() => setActiveConversation(null)} className="p-2">
           &lt;
         </button>
