@@ -10,7 +10,7 @@ import { configureChainsConfig } from "@/config/networks"
 export function Privy({ children }: { children: ReactNode }) {
   return (
     <PrivyProvider
-      appId={env.NEXT_PUBLIC_PRIVY_APP_ID as string}
+      appId={env.NEXT_PUBLIC_PRIVY_APP_ID}
       config={{
         embeddedWallets: {
           createOnLogin: "all-users",
