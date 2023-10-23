@@ -1,6 +1,7 @@
 "use client"
 
 import { HTMLAttributes } from "react"
+import Link from "next/link"
 import { usePrivy, useWallets } from "@privy-io/react-auth"
 import { usePrivyWagmi } from "@privy-io/wagmi-connector"
 
@@ -57,7 +58,19 @@ export const WalletConnectPrivy = ({
               </DialogTrigger>
               <DialogContent>
                 <div className="mt-5">
-                  <h4 className="mb-4 text-2xl font-bold">Manage wallets</h4>
+                  <h4 className="text-2xl font-bold">Manage wallets</h4>
+                  <p className="mb-4">
+                    Select your preferred wallet.
+                    <Link
+                      className="ml-1 text-blue-500 hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://docs.privy.io/guide/guides/wagmi#4-set-the-users-active-wallet"
+                    >
+                      Read more
+                    </Link>
+                  </p>
+
                   <p>
                     Active:{" "}
                     <span className="rounded-xl bg-slate-200 px-2 py-1 font-mono text-xs">
@@ -71,7 +84,10 @@ export const WalletConnectPrivy = ({
                       {wallet.address === activeWallet?.address ? (
                         <span className="ml-4">Active</span>
                       ) : (
-                        <Button onClick={() => setActiveWallet(wallet)}>
+                        <Button
+                          className="ml-4"
+                          onClick={() => setActiveWallet(wallet)}
+                        >
                           Make active
                         </Button>
                       )}
