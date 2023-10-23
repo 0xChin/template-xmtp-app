@@ -4,7 +4,7 @@ Web3 App Template built using Next.js, Privy, Tailwind, XMTP, and more.
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F0xchin%2Ftemplate-xmtp-app&project-name=Chatter&repository-name=xmtp-app&demo-title=Chatter&env=NEXTAUTH_SECRET&envDescription=How%20to%20get%20these%20env%20variables%3A&envLink=https%3A%2F%2Fgithub.com%2Fturbo-eth%2Ftemplate-web3-app%2Fblob%integrations%2F.env.example)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F0xchin%2Ftemplate-xmtp-app&project-name=Chatter&repository-name=xmtp-app&demo-title=Chatter&env=NEXTAUTH_SECRET,NEXT_PUBLIC_PRIVY_APP_ID&envDescription=How%20to%20get%20these%20env%20variables%3A&envLink=https%3A%2F%2Fgithub.com%2Fturbo-eth%2Ftemplate-web3-app%2Fblob%integrations%2F.env.example)
 
   
 
@@ -31,6 +31,11 @@ Web3 App Template built using Next.js, Privy, Tailwind, XMTP, and more.
 
 #  Getting Started
 
+The env variable `NEXT_PUBLIC_PRIVY_APP_ID` is required
+
+```bash
+cp .env.example .env
+```
   
 
 The `pnpm` CLI is the recommended package manager but `npm` and `yarn` should work too.
